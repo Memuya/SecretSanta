@@ -1,0 +1,109 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 14px;
+	font-family: arial, sans-serif;
+}
+
+ol, ul {
+	line-height: 22px;
+}
+
+table {
+	border: 1px solid #CCC;
+	border-collapse: collapse;
+	width: 100%;
+	background: #FFF;
+}
+
+table th {
+	background: green; /*#AAA*/
+	color: #FFF; /*#333*/
+	text-transform: uppercase;
+}
+
+table td, table th {
+	border: 1px solid #CCC;
+	padding: 10px;
+}
+
+.intro {
+	color: #AAA;
+	text-align: center;
+	line-height: 22px;
+}
+
+.wrapper {
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+#matches {
+	text-align: center;
+}
+
+section {
+	background: #EEE;
+	color: #666;
+	padding: 20px;
+	margin-bottom: 10px;
+	border: 2px solid #FFF;
+	outline: 1px solid #EEE;
+	box-shadow: 0px 0px 5px rgba(0,0,0,.1);
+}
+
+label {
+	display: block;
+	margin-bottom: 3px;
+}
+
+input[type=text] {
+	padding: 5px;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+input[type=submit] {
+	padding: 7px 15px;
+	border-radius: 5px;
+	background: #FFF; /*#666*/
+	border: 2px solid green;
+	color: green;
+	font-weight: bold;
+	text-transform: uppercase;
+	outline: none;
+	cursor: pointer;
+}
+
+.form-field {
+	margin-bottom: 10px;
+}
+
+#help {
+	display: none;
+}
+
+#help-btn {
+	background: green;
+	color: #FFF;
+	font-weight: bold;
+	padding: 1px 10px;
+	border-radius: 5px;
+	display: inline-block;
+	margin-bottom: 10px;
+	float: right;
+	text-decoration: none;
+}
+
+footer {
+	font-size: 10px;
+	color: #AAA;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.clear {
+	clear: both;
+}

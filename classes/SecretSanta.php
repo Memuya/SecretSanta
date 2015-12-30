@@ -16,7 +16,7 @@ class SecretSanta {
 	/**
 	 * @var array
 	 */
-	private $givers;
+	public $givers;
 	/**
 	 * @var array
 	 */

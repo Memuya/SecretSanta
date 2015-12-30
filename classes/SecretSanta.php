@@ -135,6 +135,12 @@ class SecretSanta {
 			$str = str_replace($values, ' ', $str);
 			//Turn string into an array
 			$str = explode(' ', strtolower($str));
+
+			//Prevents empty values being passed through to the array
+			for($x = 0; $x < count($str); $x++)
+				if(empty($str[$x]))
+					unset($str[$x]);
+
 			//Makes sure all values inside the array are unquie
 			$str = array_unique($str);
 

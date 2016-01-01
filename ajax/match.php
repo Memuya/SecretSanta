@@ -1,8 +1,5 @@
 <?php
 require_once '../classes/SecretSanta.php';
-require_once '../classes/Errors.php';
-
-use Memuya\ErrorHandler\Errors;
 
 //Get input fields from form
 $people = $_POST['users'];
@@ -13,16 +10,12 @@ try {
 	$kk = new SecretSanta($people, $restrictions);
 	$kk->match();
 
-	//Output any errors in the Errors object
-	if(Errors::hasErrors())	
-		echo Errors::display(0);
-
 } catch(Exception $e) {
 	die($e->getMessage());
 }
 ?>
 
-<?php if(!empty($kk->results()) && !Errors::hasErrors()): ?>
+<?php if(!empty($kk->results())): ?>
 	<table>
 		<tr>
 			<th>Giver</th>

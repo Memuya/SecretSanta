@@ -29,7 +29,7 @@
 		</section>
 
 		<section id="inputs">
-			<form action="index.php" method="POST">
+			<form>
 				<div class="form-field">
 					<label for="users">People Involved: <small>(seperate by comma | <span style="cursor: help; border-bottom: 1px dashed" title="Duplicate names will be ignored">names must be unquie</span>)</small></label>
 					<input type="text" name="users" id="users" placeholder="Person1, Person2, etc">

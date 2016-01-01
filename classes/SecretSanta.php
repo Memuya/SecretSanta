@@ -8,10 +8,6 @@
  * @Author Mehmet Uyanik
  */
 
-require_once 'Errors.php';
-
-use Memuya\ErrorHandler\Errors;
-
 class SecretSanta {
 	/**
 	 * @var array
@@ -34,7 +30,7 @@ class SecretSanta {
 
 	/**
 	 * Sets all the varibles for the class.
-	 * Checks to see if the givers, takers and restrictions variables are arrays.
+	 * Checks to see if the givers and takers variables are arrays.
 	 *
 	 * @param array $givers
 	 * @param array $takers
@@ -49,7 +45,6 @@ class SecretSanta {
 			foreach ($restrictions as $restriction) {
 				if(!empty($restriction)) {
 					$restriction = $this->convertToArray($restriction);
-					//$restriction = explode(', ', $restriction);
 
 					//Make sure 2 names are entered into the restrictions field to operate
 					if(!empty($restriction[1]))
@@ -73,7 +68,7 @@ class SecretSanta {
 
 		//There must be more than 1 person involved to continue
 		if(count($this->givers) <= 1) {
-			Errors::add('More than 1 person must be involved.');
+			throw new Exception('More than 1 person must be involved.');
 		} else {
 
 			while($x) {

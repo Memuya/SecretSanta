@@ -32,8 +32,7 @@ class SecretSanta {
 	 * Sets all the varibles for the class.
 	 * Checks to see if the givers and takers variables are arrays.
 	 *
-	 * @param array $givers
-	 * @param array $takers
+	 * @param string $people
 	 * @param array $restrictions
 	 */
 	public function __construct($people, $restrictions) {

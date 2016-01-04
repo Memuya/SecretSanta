@@ -13,9 +13,11 @@ try {
 } catch(Exception $e) {
 	die($e->getMessage());
 }
+
+$results = $kk->results();
 ?>
 
-<?php if(!empty($kk->results())): ?>
+<?php if(!empty($results)): ?>
 	<table>
 		<tr>
 			<th>Giver</th>

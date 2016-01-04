@@ -46,16 +46,13 @@ class SecretSanta {
 					$restriction = $this->convertToArray($restriction);
 
 					//Make sure 2 names are entered into the restrictions field to operate
-					if(!empty($restriction[1]))
-						$this->restrictions[] = [strtolower($restriction[0]) => strtolower($restriction[1])];
-					else
-						$this->restrictions = null;
+					$this->restrictions[] = !empty($restriction[1]) ? [strtolower($restriction[0]) => strtolower($restriction[1])] : null;
 				}
 			}
 		}
 
 		if(!$this->checkIfArray([$this->givers, $this->takers]))
-			throw new Exception("Signature only takes array values.");
+			throw new Exception("Arrays could not be created via signature values.");
 	}
 
 	/**
@@ -66,39 +63,42 @@ class SecretSanta {
 		$x = true;
 
 		//There must be more than 1 person involved to continue
-		if(count($this->givers) <= 1) {
+		if(count($this->givers) <= 1)
 			throw new Exception('More than 1 person must be involved.');
-		} else {
+		
+		//Givers and takers cannot contain numbers
+		if(array_filter($this->givers, 'is_numeric') || array_filter($this->takers, 'is_numeric'))
+			throw new Exception('Numeric values cannot be used as a name.');
 
-			while($x) {
-				//Randomize array elements
-				shuffle($this->givers);
-				shuffle($this->takers);
+		while($x) {
+			//Randomize array elements
+			shuffle($this->givers);
+			shuffle($this->takers);
 
-				//Combine both the givers a takers arrays to make a associative array
-				$this->results = array_combine($this->givers, $this->takers);
+			//Combine both the givers a takers arrays to make a associative array
+			$this->results = array_combine($this->givers, $this->takers);
 
-				foreach($this->results as $key => $match) {
-					//Make sure givers can not get themselves
-					if($key === $match)
-						break;
+			foreach($this->results as $key => $match) {
+				//Make sure givers can not get themselves
+				if($key === $match)
+					break;
 
-					//Make sure no people that are in the restrictions array can be matched together
-					if(!empty($this->restrictions)) {
-						foreach($this->restrictions as $restriction)
-							foreach($restriction as $rKey => $r)
-								if($rKey == $key && $r == $match)
-									break 3;
-					}
-					
-					//End while loop at the end of the matches array
-					if($match == end($this->results))
-						$x = false;
+				//Make sure no people that are in the restrictions array can be matched together
+				if(!empty($this->restrictions)) {
+					foreach($this->restrictions as $restriction)
+						foreach($restriction as $rKey => $r)
+							if($rKey == $key && $r == $match)
+								break 3;
 				}
+				
+				//End while loop at the end of the results array
+				if($match == end($this->results))
+					$x = false;
 			}
-
-			return $this->results;
 		}
+
+		return $this->results;
+		
 	}
 
 	/**
@@ -119,7 +119,7 @@ class SecretSanta {
 	 *
 	 * @param string $str
 	 */
-	public function convertToArray($str) {
+	private function convertToArray($str) {
 		if(!is_array($str)) {
 			//Values to be search
 			$values = [',', ', ', ' ,', ' '];
